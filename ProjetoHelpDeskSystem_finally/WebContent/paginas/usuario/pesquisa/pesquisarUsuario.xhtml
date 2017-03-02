@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Pesquisar usuario</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br/><br/><br/><br/>
+	
+	
+	<h:outputLabel value="Pesquisar Usuario"
+		styleClass="title" />
+
+	<hr />
+
+	<h:form>
+		<h:messages styleClass="msgWarn2" />	
+			<h:panelGrid columns="2" cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:graphicImage value="pesquisarUS" library="images" name="pesquisa.jpg" />
+			<br/><br/>
+			</h:panelGrid>
+			
+		<h:panelGrid columns="3" cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			
+			<h:outputLabel value="Nome" />
+			<h:inputText binding="#{nome}" autocomplete="off"/>
+
+			<h:commandButton action="#{usuarioBean.pesquisar(nome.value)}"
+				value="Pesquisar">
+				<f:setPropertyActionListener value="Pesquisar"
+					target="#{usuarioBean.caption}" />
+			</h:commandButton>
+
+		</h:panelGrid>
+
+	</h:form>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid columns="1" cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{usuarioBean.novo()}">
+			<h:graphicImage value="home" library="images" name="home.JPG"/>
+			</h:commandLink>
+			
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

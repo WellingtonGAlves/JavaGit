@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Mostrar usuario</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br/><br/><br/><br/>
+	
+	<h:outputText value="#{usuarioBean.caption}"
+		styleClass="title" />
+
+	<hr />
+
+	<h:panelGrid columns="2" cellspacing="2" cellpadding="5" style="width:500px; margin-left:auto; margin-right:auto;">
+
+		
+
+		<h:outputLabel value="Nome:" />
+		<h:outputText value="#{usuarioBean.usuario.nome}" />
+		
+		<h:outputLabel value="Permissão:" />
+			<h:outputText value="#{usuarioBean.usuario.permissao}" />
+		
+		<h:outputLabel value="Departamento:" />
+		<h:outputText value="#{usuarioBean.usuario.departamento.departamento}">
+		</h:outputText>
+		
+		<h:outputLabel value="Email:" />
+		<h:outputText value="#{usuarioBean.usuario.email}">
+		</h:outputText>
+
+		<h:outputLabel value="Sexo:" />
+	
+		<h:outputLabel value="#{usuarioBean.usuario.sexo}" />
+						
+		<h:outputLabel value="Analista  :" />
+			<h:outputText value="#{usuarioBean.usuario.isAnalista}" />
+		<h:outputLabel value="Nível do analista  :" />
+			<h:outputText value="#{usuarioBean.usuario.nivelAnalista}" />
+		<h:outputLabel value="Login:" />
+			<h:outputText value="#{usuarioBean.usuario.login}" />
+		<h:outputLabel value="Senha:" />
+			<h:outputText value="#{usuarioBean.usuario.senha}" />
+		
+
+		
+		
+			
+		
+
+	</h:panelGrid>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{usuarioBean.novo()}">
+			<h:graphicImage value="home" library="images" name="home.JPG" />
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

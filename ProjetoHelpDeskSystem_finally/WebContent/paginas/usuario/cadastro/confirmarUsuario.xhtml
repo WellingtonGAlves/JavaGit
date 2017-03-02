@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Confirmar Usuario</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br/><br/><br/><br/>
+
+	<h:outputLabel value="Confirmar Cadastro  Usuario" styleClass="title"
+		rendered="#{empty usuarioBean.usuario.idUsuario}" />
+
+	<hr />
+
+	<h:messages style="font-size:large; color:red; font-style:italic;" />
+
+	<h:form>
+	
+	
+
+	
+
+		<h:panelGrid columns="2" cellspacing="2" cellpadding="5" style="width:100px; margin-left:auto; margin-right:auto;">
+			
+			
+			<h:outputLabel value="Nome:" />
+			<h:outputText value="#{usuarioBean.usuario.nome}" />
+			
+			<h:outputLabel value="Permissão:" />
+			<h:outputText value="#{usuarioBean.usuario.permissao}" />
+
+			<h:outputLabel value="Departamento:" />
+			<h:outputText value="#{usuarioBean.usuario.departamento.departamento}">
+			</h:outputText>
+			
+			<h:outputLabel value="Sexo:" />
+			<h:outputText value="#{usuarioBean.usuario.sexo}">
+			</h:outputText>
+			
+			<h:outputLabel value="Email:" />
+			<h:outputText value="#{usuarioBean.usuario.email}">
+			</h:outputText>
+			
+			<h:outputLabel value="É um analista?" />
+			<h:outputText value="#{usuarioBean.usuario.isAnalista}">
+			</h:outputText>
+			<h:outputLabel value="Nível do analista:" />
+			<h:outputText value="#{usuarioBean.usuario.nivelAnalista}">
+			</h:outputText>
+			<h:outputLabel value="Login:" />
+			<h:outputText value="#{usuarioBean.usuario.login}">
+			</h:outputText>
+			<h:outputLabel value="Senha:" />
+			<h:outputText value="#{usuarioBean.usuario.senha}">
+			</h:outputText>
+
+			<h:commandButton action="#{usuarioBean.salvar}" value="Criar Usuario" />
+
+		</h:panelGrid>
+
+	</h:form>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid columns="2" cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="/paginas/usuario/cadastro/cadastrarUsuario">
+			<h:graphicImage value="voltar" library="images" name="voltar.JPG"/>
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

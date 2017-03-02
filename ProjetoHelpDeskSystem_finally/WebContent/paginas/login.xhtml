@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Bem vindo!</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+
+
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<h:outputText value="" styleClass="titleStrong" />
+
+
+	<hr />
+
+	<h:form>
+	
+	<h:messages styleClass="msgWarn2" />
+			<h:outputText value="Login" styleClass="title" />
+			
+		<h:panelGrid columns="1" cellspacing="3" cellpadding="3" style="margin-left:auto; margin-right:auto;">
+			
+			<h:graphicImage value="login" library="images" name="login.jpg" style="width:320px"/>
+			
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="2" cellspacing="3" cellpadding="3" style="margin-left:auto; margin-right:auto;">			
+			<h:outputLabel value="Login" />
+			<h:inputText binding="#{login}" autocomplete="off"/>
+			<h:outputLabel value="Senha" />
+			<h:inputSecret binding="#{senha}" autocomplete="off"/>
+			</h:panelGrid>
+		<br/>
+		
+		
+		<h:panelGrid olumns="2" cellspacing="3" cellpadding="3" style="margin-left:auto; margin-right:auto;">
+		<h:commandLink action="#{loginBean.validarLogin(login.value,senha.value)}" >
+			<h:graphicImage value="entrar" library="images" name="entrar.JPG"/>
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+	<hr />
+
+</h:body>
+</html>

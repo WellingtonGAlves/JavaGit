@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Consulta usuario</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+			<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br/><br/><br/><br/>
+	<h:messages style="font-size:large; color: red; font-style: italic" />
+
+	<h:outputLabel value="#{usuarioBean.caption}"
+		style="font-size:xx-large; color:red; font-style: italic;font-family: 'Georgia';"
+		rendered="#{empty usuarioBean.usuarioList}" />
+
+	<h:form id="formConsultar">
+
+		<h:dataTable value="#{usuarioBean.usuarioList}" var="usuario" border="1"
+			cellspacing="5" cellpadding="5"
+			rendered="#{!empty usuarioBean.usuarioList}">
+
+			<f:facet name="caption">
+				<h:outputLabel value="#{usuarioBean.caption}"
+					styleClass="title" />
+			</f:facet>
+
+			<f:facet name="header">
+				<h:outputLabel value="Usuarios Cadastradas" />
+			</f:facet>
+
+			<f:facet name="footer">
+				<h:outputLabel value="Fim da Lista" styleClass="title" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{usuario.idUsuario}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="NOME" />
+				</f:facet>
+				<h:outputText value="#{usuario.nome}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Departamento" />
+				</f:facet>
+				<h:outputText value="#{usuario.departamento.departamento}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Sexo" />
+				</f:facet>
+				<h:outputText value="#{usuario.sexo}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Email" />
+				</f:facet>
+				<h:outputText value="#{usuario.email}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ANALISTA" />
+				</f:facet>
+				<h:outputText value="#{usuario.isAnalista}" />
+			</h:column>
+			
+			
+
+			
+
+			
+
+		</h:dataTable>
+
+	</h:form>
+
+	<h:form>
+		<h:panelGrid columns="2" cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{usuarioBean.novo()}">
+			<h:graphicImage value="home" library="images" name="home.JPG" />
+			</h:commandLink>
+			
+			<h:commandLink action="/paginas/usuario/pesquisa/pesquisarUsuario">
+			<h:graphicImage value="pesquisarU" library="images" name="pesquisarU.JPG" />
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

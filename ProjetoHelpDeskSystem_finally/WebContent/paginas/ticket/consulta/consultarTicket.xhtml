@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Consulta ticket</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<h:messages style="font-size:large; color: red; font-style: italic" />
+
+	<h:outputLabel value="#{ticketBean.caption}"
+		style="font-size:xx-large; color:red; font-style: italic;font-family: 'Georgia';"
+		rendered="#{empty ticketBean.ticketList}" />
+
+	<h:form id="formConsultar">
+
+		<h:dataTable value="#{ticketBean.ticketList}" var="ticket" border="10"
+			cellspacing="5" cellpadding="5"
+			rendered="#{!empty ticketBean.ticketList}">
+
+			<f:facet name="caption">
+				<h:outputLabel value="#{ticketBean.caption}"
+					styleClass="title" />
+			</f:facet>
+
+			<f:facet name="header">
+				<h:outputLabel value="Tickets Cadastradas" />
+			</f:facet>
+
+			<f:facet name="footer">
+				<h:outputLabel value="Fim da Lista" styleClass="title" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{ticket.idTicket}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="USUARIO" />
+				</f:facet>
+				<h:outputText value="#{ticket.usuario.nome}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="TIPO" />
+				</f:facet>
+				<h:outputText value="#{ticket.tipo.tipo}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="CATEGORIA" />
+				</f:facet>
+				<h:outputText value="#{ticket.categoria.categoria}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ASSUNTO" />
+				</f:facet>
+				<h:outputText value="#{ticket.assunto}" />
+			</h:column>
+			
+			
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="DESCRIÇÃO" />
+				</f:facet>
+				<h:outputText value="#{ticket.descricao}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="SOLUÇÃO" />
+				</f:facet>
+				<h:outputText value="#{ticket.solucao}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="NÍVEL DO ANALISTA" />
+				</f:facet>
+				<h:outputText value="#{ticket.nivelAnalista}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ANALISTA" />
+				</f:facet>
+				<h:outputText value="#{ticket.analista.nome}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="ABERTO EM" />
+				</f:facet>
+				<h:outputText value="#{ticket.dataInicio}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="FECHADO EM" />
+				</f:facet>
+				<h:outputText value="#{ticket.dataFim}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="STATUS" />
+				</f:facet>
+				<h:outputText value="#{ticket.statusTicket}" />
+			</h:column>
+			
+			
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Editar" />
+				</f:facet>
+				<h:commandLink action="/paginas/ticket/cadastro/alterarTicket">
+					<h:graphicImage library="images" name="editar.JPG"
+					title="editar" style="width:70px;"/>
+					<f:setPropertyActionListener value="#{ticket}"
+						target="#{ticketBean.ticket}" />
+				</h:commandLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Excluir" />
+				</f:facet>
+				<h:commandLink action="#{ticketBean.excluir()}"
+					onclick="if(!confirm('Confirma a exclusão da ticket #{ticket.idTicket}?')) return false">
+					<h:graphicImage library="images" name="excluir.JPG"
+						title="excluir" style="width:70px"/>
+					<f:setPropertyActionListener value="#{ticket}"
+						target="#{ticketBean.ticket}" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+	<h:form>
+		<h:panelGrid columns="2" cellspacing="3" cellpadding="3" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{ticketBean.novo()}">
+			<h:graphicImage value="home" library="images" name="home.JPG"/>
+			</h:commandLink>
+			<h:commandLink action="#{ticketBean.pesquisarTicket()}" >
+			<h:graphicImage value="home" library="images" name="pesquisar.JPG"/>
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

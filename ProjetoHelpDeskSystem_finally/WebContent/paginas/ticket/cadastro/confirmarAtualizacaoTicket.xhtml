@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Atualizar ticket</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br/><br/><br/><br/>
+	<h:outputLabel value="Confirmar Atualização do Cadastro" styleClass="title"
+		rendered="#{empty ticktBean.ticket.idTicket}" />
+
+	<h:outputLabel value="" styleClass="titleStrong"
+		rendered="#{!empty ticktBean.ticket.idTicket}" />
+
+	<hr />
+
+	<h:messages style="font-size:large; color:red; font-style:italic;" />
+
+	<h:form>
+	
+	
+
+	
+
+		<h:panelGrid columns="2" cellspacing="5" cellpadding="5" style="width:500px; margin-left:auto; margin-right:auto;">
+
+			<h:outputLabel value="ID_TICKET"
+				rendered="#{!empty ticktBean.ticket.idTicket}" />
+			<h:outputText value="#{ticktBean.ticket.idTicket}"
+				rendered="#{!empty ticktBean.ticket.idTicket}" />
+
+			<h:outputLabel value="Usuario :" />
+		<h:outputText value="#{ticketBean.ticket.usuario.nome}" />
+		
+		<h:outputLabel value="Tipo :" />
+		<h:outputText value="#{ticketBean.ticket.tipo.tipo}">
+		</h:outputText>
+		
+		<h:outputLabel value="Categoria :" />
+		<h:outputText value="#{ticketBean.ticket.categoria.categoria}">
+		</h:outputText>
+
+		<h:outputLabel value="Assunto :" />
+		<h:panelGroup>
+			<h:outputText value="#{ticketBean.ticket.assunto}" />
+			
+		</h:panelGroup>
+
+		
+		<h:outputLabel value="Descrição   :" />
+		<h:outputText
+			value="#{ticketBean.ticket.descricao}" />
+			
+		<h:outputLabel value="Solução   :" />
+		<h:outputText
+			value="#{ticketBean.ticket.solucao}" />
+		
+		
+		<h:outputLabel value="Nível do Analista    :" />
+		<h:outputText
+			value="#{ticketBean.ticket.nivelAnalista}" />
+			
+		<h:outputLabel value="Analista    :" />
+		<h:outputText
+			value="#{ticketBean.ticket.analista.nome}" />
+		
+		<h:outputLabel value="Aberto em  :" />
+		<h:outputText
+			value="#{ticketBean.ticket.dataInicio}" />
+			
+		<h:outputLabel value="Status :" />
+		<h:outputText
+			value="#{ticketBean.ticket.statusTicket}" />
+		
+		<h:outputLabel value="Fechado em :" />
+		<h:outputText
+			value="#{ticketBean.ticket.dataFim}" />
+			<h:commandButton action="#{ticketBean.salvar}" value="Salvar" />				
+		
+			</h:panelGrid>
+			
+		
+		
+		
+	</h:form>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid cellspacing="1" cellpadding="1" style="width:500px; margin-left:auto; margin-right:auto;">
+			
+			<br/>
+			<h:commandLink action="/paginas/ticket/cadastro/alterarTicket" >
+			<h:graphicImage value="voltar" library="images" name="voltar.JPG" />
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

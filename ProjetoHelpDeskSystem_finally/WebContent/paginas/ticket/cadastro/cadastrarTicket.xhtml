@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Novo Ticket</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	
+		
+	
+	<h:form id="inputForm">
+		<h:messages styleClass="msgWarn2" />
+		<br/>
+		
+		<h:outputLabel value="Cadastrar Ticket" styleClass="title" />
+		<br/>
+		
+		
+		<h:inputHidden value="#{ticketBean.ticket.assunto}" />
+		<h:inputHidden value="#{ticketBean.ticket.descricao}" />
+		
+		
+		
+		
+		
+		
+		
+		<h:panelGrid columns="3" cellspacing="2" cellpadding="5" style="width:500px; margin-left:auto; margin-right:auto;">
+			
+				
+			<h:outputText value="" styleClass="msgInfo" />
+			
+			<h:outputLabel value="Usuario:" for="inputUsuario" />
+			
+				<h:panelGroup>
+				
+				<h:panelGrid columns="">
+
+			<h:inputText binding="#{usuarioCadastro}" autocomplete="off" style=" width : 524px; height : 23px;"/>
+
+			<h:commandButton action="#{ticketBean.pesquisarUsuarioCadastro(usuarioCadastro.value)}"
+				value="Pesquisar Usuario">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			
+			<h:selectOneMenu id="inputIdUsuario"
+					value="#{ticketBean.ticket.usuario.idUsuario}" style=" width : 234px; height : 20px;">
+					<f:selectItem itemValue="0" itemLabel="Selecione um Usuario..." />
+					<f:selectItems value="#{ticketBean.selectItemUsuarios}" var="usuario"
+						itemLabel="#{usuario.label}" itemValue="#{usuario.value}" />
+				</h:selectOneMenu>
+			
+		</h:panelGrid>
+			</h:panelGroup>
+		
+			<h:outputText />
+			
+			<h:outputLabel value="Tipo:" for="inputIdTipo" />
+			<h:panelGroup>
+				<h:selectOneMenu id="inputIdTipo"
+					value="#{ticketBean.ticket.tipo.idTipo}" style="width : 236px; height : 21px;">
+					<f:selectItem itemValue="0" itemLabel="Selecione um Tipo..." />
+					<f:selectItems value="#{ticketBean.selectItemTipos}" var="tipo"
+						itemLabel="#{tipo.label}" itemValue="#{tipo.value}" />
+				</h:selectOneMenu>
+			</h:panelGroup>
+		
+			
+			<br/>
+			<h:outputLabel value="Categoria:" for="inputIdCategoria" />
+			<h:panelGroup>
+				<h:selectOneMenu id="inputIdCategoria"
+					value="#{ticketBean.ticket.categoria.idCategoria}">
+					<f:selectItem itemValue="0" itemLabel="Selecione uma Categoria..." />
+					<f:selectItems value="#{ticketBean.selectItemCategorias}" var="categoria"
+						itemLabel="#{categoria.label}" itemValue="#{categoria.value}" />
+				</h:selectOneMenu>
+			</h:panelGroup>
+		
+			
+			<br/>
+			<h:outputLabel value="Assunto:" for="inputAssunto" />
+			<h:inputText id="inputAssunto" value="#{ticketBean.ticket.assunto}"
+				label="Campo Assunto" maxlength="50" size="77"  />
+					<br/>
+					<h:outputLabel value="Descrição:" for="inputDescricao"/>
+					
+					<h:inputTextarea id="inputDescricao"
+						value="#{ticketBean.ticket.descricao}"
+						label="Descricao Ticket" style="height: 4.500em; width : 40.500em; " required="false" maxlength="255" autocomplete="off"/>
+					
+			<br/>
+			<h:outputLabel value="Nível do Analista:" for="inputNivelAnalista" />
+			<h:panelGroup > 
+				
+				<h:selectOneRadio id="inputNivelAnalista" value="#{ticketBean.ticket.nivelAnalista}">
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			
+			<br/>
+			<h:outputLabel value="Analista:" for="inputIdAnalista" />
+			<h:panelGroup>
+			<h:commandButton action="#{ticketBean.pesquisarAnalistaCadastro()}"
+				value="Pesquisar Nível Analista">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+				<h:selectOneMenu id="inputIdAnalista"
+					value="#{ticketBean.ticket.analista.idAnalista}">
+					<f:selectItem itemValue="0" itemLabel="Selecione um Analista..." />
+					<f:selectItems value="#{ticketBean.selectItemAnalistas}" var="analista"
+						itemLabel="#{analista.label}" itemValue="#{analista.value}" />
+				</h:selectOneMenu>
+			</h:panelGroup>
+			
+			
+			<br/>
+			<h:outputLabel value="Prioridade:" for="inputIdPrioridade" />
+			<h:panelGroup>
+				<h:selectOneMenu id="inputIdPrioridade"
+					value="#{ticketBean.ticket.prioridade.idPrioridade}">
+					<f:selectItem itemValue="0" itemLabel="Selecione uma Prioridade..." />
+					<f:selectItems value="#{ticketBean.selectItemPrioridades}" var="prioridade"
+						itemLabel="#{prioridade.label}" itemValue="#{prioridade.value}" />
+				</h:selectOneMenu>
+			</h:panelGroup>
+			</h:panelGrid>
+			
+			<h:panelGrid cellspacing="5" cellpadding="5" style="margin-left:auto; margin-right:auto;">
+			<h:commandButton value="Confirmar" action="#{ticketBean.confirmarCadastro()}" />
+			</h:panelGrid>
+			<br/>
+		
+		<h:outputText value="* Obrigatório" styleClass="msgInfo" />
+	</h:form>
+	
+		<h:form>
+		<h:panelGrid columns="2" cellspacing="5" cellpadding="5" style="width:100px; margin-left:370px; margin-right:auto;">
+			<h:commandLink action="#{ticketBean.novo()}">
+			<h:graphicImage title="back to homepage" library="images" name="home.JPG"/>
+			</h:commandLink>
+			
+			<h:commandLink action="/paginas/ticket/consulta/consultarTicket" rendered="#{!empty ticketBean.ticket.idTicket}">
+			<h:graphicImage title="Pesquisar" library="images" name="consultar.JPG"/>
+			</h:commandLink>
+			
+		</h:panelGrid>
+		</h:form>
+	
+	
+</h:body>
+</html>

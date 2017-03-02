@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Pesquisar ticket</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<h:graphicImage value="pesquisa" libary="images" name="pesquisar.JPG" />
+
+
+	<h:outputLabel value="Pesquisar Ticket" styleClass="title" />
+
+	<h:panelGrid style="margin-left:auto; margin-right:auto;">
+		<h:graphicImage title="background" library="images"
+			name="pesquisa.jpg" style="width:200px;" />
+	</h:panelGrid>
+	<hr />
+	<br />
+
+	<h:form>
+		<h:messages styleClass="msgWarn2" />
+
+		<h:panelGrid columns="3" cellspacing="2" cellpadding="3"
+				style="width:500px; margin-left:auto; margin-right:auto;">
+			
+
+
+		</h:panelGrid>
+		<h:panelGrid columns="3" cellspacing="2" cellpadding="2"
+			style="width:500px; margin-left:auto; margin-right:auto;">
+		
+			<h:outputLabel value="Gerar relatorio" for="inputGerarRelatorio" />
+
+			<h:selectOneMenu id="inputSelectStatus"
+				value="#{ticketBean.status.status}">
+				<f:selectItem itemValue="0" itemLabel="Selecione um Status..." />
+				<f:selectItems value="#{ticketBean.selectItemStatus}" var="status"
+					itemLabel="#{status.label}" itemValue="#{status.value}" />
+			</h:selectOneMenu>
+			<h:commandButton
+				action="#{ticketBean.relatorios(ticketBean.status.status)}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			
+			<h:outputLabel value="Tickets Abertos a mais de 5 dias"
+				for="inputTicketsAbertos" />
+
+			<br></br>
+			<h:commandButton action="#{ticketBean.relatoriosDatas('5')}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			
+			<h:outputLabel value="Tickets Abertos a mais de 30 dias"
+				for="inputTicketsAbertosTrintaDias" />
+
+			<br></br>
+			<h:commandButton action="#{ticketBean.relatoriosDatas('30')}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			<h:outputLabel value="Buscar Abertos"
+				for="inputTicketsAbertosTrintaDias" />
+				
+			<h:inputText binding="#{numeroDeDias}" size="3" maxlength="3"
+				autocomplete="off" />
+
+
+			<h:commandButton
+				action="#{ticketBean.relatoriosDatas(numeroDeDias.value)}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			
+			<h:outputLabel value="Tickets Fechados maior 5 dias"
+				for="inputTicketsAbertos" />
+
+			<br></br>
+			<h:commandButton action="#{ticketBean.relatoriosDatasFechados('5')}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			
+			<h:outputLabel value="Tickets Fechados maior 30 dias"
+				for="inputTicketsAbertosTrintaDias" />
+
+			<br></br>
+			<h:commandButton action="#{ticketBean.relatoriosDatasFechados('30')}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+			<h:outputLabel value="Buscar Fechados"
+				for="inputTicketsAbertosTrintaDias" />
+				
+			<h:inputText binding="#{numeroDeDiasFechados}" size="3" maxlength="3"
+				autocomplete="off" />
+
+
+			<h:commandButton
+				action="#{ticketBean.relatoriosDatasFechados(numeroDeDiasFechados.value)}"
+				value="Gerar Relatorio">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+
+
+		</h:panelGrid>
+	</h:form>
+	<h:form>
+		<br />
+
+		<h:outputLabel value="" />
+		<h:dataTable value="#{ticketBean.relatorioDeDias}" var="relatorio"
+			border="10" cellspacing="5" cellpadding="5"
+			rendered="#{!empty ticketBean.relatorioDeDias}">
+
+
+
+			<f:facet name="header">
+				<h:outputLabel value="Tickets Abertos a mais de  5 dias" />
+			</f:facet>
+
+			<f:facet name="footer">
+				<h:outputLabel value="Fim da Lista" styleClass="title" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id do Ticket" />
+				</f:facet>
+				<h:outputText value="#{relatorio.idTicket}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo" />
+				</f:facet>
+				<h:outputText value="#{relatorio.tipo}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{relatorio.categoria}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Assunto" />
+				</f:facet>
+				<h:outputText value="#{relatorio.assunto}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{relatorio.descricao}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Aberto em " />
+				</f:facet>
+				<h:outputText value="#{relatorio.dataInicio}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Dias Aberto " />
+				</f:facet>
+				<h:outputText value="#{relatorio.diasAberto}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Dias Fechados" />
+				</f:facet>
+				<h:outputText value="#{relatorio.diasFechados}" />
+			</h:column>
+
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		</h:dataTable>
+		<h:dataTable value="#{ticketBean.relatorioListFechado}"
+			var="relatorio" border="10" cellspacing="5" cellpadding="5"
+			rendered="#{!empty ticketBean.relatorioListFechado}">
+
+
+
+			<f:facet name="header">
+				<h:outputLabel value="Tickets Fechados" />
+			</f:facet>
+
+			<f:facet name="footer">
+				<h:outputLabel value="Fim da Lista" styleClass="title" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo" />
+				</f:facet>
+				<h:outputText value="#{relatorio.tipo}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{relatorio.categoria}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Assunto" />
+				</f:facet>
+				<h:outputText value="#{relatorio.assunto}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{relatorio.descricao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Solução" />
+				</f:facet>
+				<h:outputText value="#{relatorio.solucao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Aberto em " />
+				</f:facet>
+				<h:outputText value="#{relatorio.dataInicio}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Fechado em " />
+				</f:facet>
+				<h:outputText value="#{relatorio.dataFim}" />
+			</h:column>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+		</h:dataTable>
+
+
+		<h:dataTable value="#{ticketBean.relatorioListAberto}" var="relatorio"
+			border="10" cellspacing="5" cellpadding="5"
+			rendered="#{!empty ticketBean.relatorioListAberto}">
+
+
+
+			<f:facet name="header">
+				<h:outputLabel value="Tickets Fechados" />
+			</f:facet>
+
+			<f:facet name="footer">
+				<h:outputLabel value="Fim da Lista" styleClass="title" />
+			</f:facet>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Tipo" />
+				</f:facet>
+				<h:outputText value="#{relatorio.tipo}"
+					style="text-align: center; display: block;" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{relatorio.categoria}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Assunto" />
+				</f:facet>
+				<h:outputText value="#{relatorio.assunto}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{relatorio.descricao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Solução" />
+				</f:facet>
+				<h:outputText value="#{relatorio.solucao}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Aberto em " />
+				</f:facet>
+				<h:outputText value="#{relatorio.dataInicio}" />
+			</h:column>
+
+		</h:dataTable>
+
+
+
+	</h:form>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid columns="2"
+			style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{ticketBean.novo()}">
+				<h:graphicImage value="home" library="images" name="home.JPG" />
+			</h:commandLink>
+			<h:commandLink action="/paginas/usuario/consulta/consultarUsuario"
+				rendered="#{!empty usuarioBean.usuario.idUsuario}">
+				<h:graphicImage title="Pesquisar" library="images"
+					name="consultar.JPG" />
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

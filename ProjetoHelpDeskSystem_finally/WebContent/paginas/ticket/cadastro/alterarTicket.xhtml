@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Altualizar Ticket</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<hr />
+	<h:form id="inputForm">
+		<h:messages styleClass="msgWarn2" />
+		<h:inputHidden value="#{ticketBean.ticket.idTicket}" />
+		<h:inputHidden value="#{ticketBean.ticket.descricao}" />
+		<h:inputHidden value="#{ticketBean.ticket.nivelAnalista}" />
+		<h:inputHidden value="#{ticketBean.ticket.solucao}" />
+		<h:inputHidden value="#{ticketBean.ticket.statusTicket}" />
+		
+		
+		<h:outputText value="Alterar Ticket" styleClass="title" />
+		<br/>
+		<h:outputText value="" styleClass="msgInfo" />
+		<h:panelGrid columns="3" cellspacing="5" cellpadding="1" style="width:50px; margin-left:auto; margin-right:auto;">
+			<h:outputLabel value="Descrição:" for="inputNivelAnalista"/>
+			<h:inputTextarea id="inputDescricao"
+						value="#{ticketBean.ticket.descricao}"
+						label="Descricao Ticket" style="height: 4.500em; width : 40.500em; " required="false" autocomplete="off"/>
+		</h:panelGrid>		
+				
+			
+			<h:panelGrid columns="3" cellspacing="5" cellpadding="1" style="width:499px; margin-left:auto; margin-right:auto;">
+			<h:outputLabel value="Nível do Analista:" for="inputNivelAnalista" />
+			<h:panelGroup  > 
+			
+				<h:selectOneRadio id="inputNivelAnalista" value="#{ticketBean.ticket.nivelAnalista}">
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			
+			
+			
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="4" cellspacing="5" cellpadding="1" style="width:440px; margin-left:auto; margin-right:auto;">
+			
+			<h:outputLabel value="#{ticketBean.ticket.analista.nome}" for="inputAnalista" />
+			
+			<h:outputLabel value="Alterar para:" for="inputAnalista"  />
+			
+			<h:commandButton action="#{ticketBean.pesquisarAnalistaCadastro()}"
+				value="Pesquisar Nível Analista">
+				<f:setPropertyActionListener value="Pesquisar Usuario"
+					target="#{ticketBean.caption}" />
+			</h:commandButton>
+				
+			
+			<h:selectOneMenu id="inputIdAnalista"
+					value="#{ticketBean.ticket.analista.idAnalista}">
+					<f:selectItem itemValue="0" itemLabel="Selecione um Analista..." />
+					<f:selectItems value="#{ticketBean.selectItemAnalistas}" var="analista"
+						itemLabel="#{analista.label}" itemValue="#{analista.value}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="3" style="width:370px; margin-left:auto; margin-right:auto;">
+			<h:outputLabel value="Status:" for="inputStatus" />
+			<h:panelGroup  > 
+					<h:selectOneRadio id="inputStatus" value="#{ticketBean.ticket.statusTicket}">
+						<f:selectItem itemLabel="ABERTO" itemValue="ABERTO" />
+						<f:selectItem itemLabel="FECHADO" itemValue="FECHADO" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2" cellspacing="5" cellpadding="1" style="width:100px; margin-left:auto; margin-right:auto;">
+			
+					
+					<h:outputLabel value="Solução:" for="inputSolucao"/>
+					
+					<h:inputTextarea id="inputSolucao"
+						value="#{ticketBean.ticket.solucao}"
+						label="Solucao Ticket" style="height: 6.500em; width : 24.300em; " required="false" autocomplete="off"/>
+					<h:outputText />
+				
+			
+			<h:outputText />
+			<h:outputText />
+			<h:outputText />
+			
+			</h:panelGrid>
+			<h:panelGrid style="width:100px; margin-right:auto; margin-left:auto">
+			<h:commandButton value="Confirmar Atualização" action="#{ticketBean.confirmarAtualizacaoNoTicket()}" />
+			</h:panelGrid>
+			
+		<h:outputText value="* Obrigatório" styleClass="msgInfo" />
+	</h:form>
+	<hr />
+	<h:form>
+		
+		<h:panelGrid columns="2" cellspading="5" cellpading="5" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{ticketBean.novo()}">
+			<h:graphicImage title="back to homepage" library="images" name="home.JPG"/>
+			</h:commandLink>
+			
+			<h:commandLink action="#{ticketBean.consultar()}" rendered="#{!empty ticketBean.ticket.idTicket}">
+			<h:graphicImage title="Pesquisar" library="images" name="consultar.JPG"/>
+			</h:commandLink>	
+		</h:panelGrid>
+	
+	</h:form>
+</h:body>
+</html>

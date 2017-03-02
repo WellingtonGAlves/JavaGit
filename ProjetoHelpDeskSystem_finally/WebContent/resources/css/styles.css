@@ -1,0 +1,76 @@
+@CHARSET "ISO-8859-1";
+
+.rodapes {
+	FONT-FAMILY: 'impact'; 
+	color:white; 
+	font-size:75px; 
+	background-color:#80bfff;
+	text-align: right;
+	display: block;
+	text-shadow: 0.1em 0.1em 0.05em #333
+}
+
+.title {
+	
+	font-size: 28px; 
+	font-weight : bold;
+	color: #80bfff;
+	padding: 10px 10px 10px 10px;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	
+	
+}
+
+.titleStrong {
+	FONT-FAMILY: 'impact'; 
+	color:white; 
+	font-size:75px; 
+	background-color:#80bfff;
+	text-align: right;
+	display: block;
+	text-shadow: 0.1em 0.1em 0.05em #333
+}
+
+
+
+
+
+.msgInfo {
+	color: red;
+	font-size: 12px;
+	font-style: italic;
+}
+
+.msgError {
+	color: red;
+	font-size: 15px; font-weight : bold;
+	font-style: oblique;
+}
+
+.msgWarn {
+	color: green;
+	font-size: 20px;
+	
+}
+
+.msgWarn2 {
+	font-size:large; 
+	color:red; 
+	font-style:italic;
+}
+
+.emphasis {
+	font-style: italic;
+	fonte-size: 1.3em;
+}
+
+.img {
+    width: 1000px;
+    height: 450px;
+    float:none; 
+    display:block; 
+    margin-left:auto; 
+    margin-right:auto;
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Mostrar cadastro</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<br/><br/><br/><br/>
+	<h:outputText value="#{ticketBean.caption}"
+		styleClass="title" />
+
+	<hr />
+
+	<h:panelGrid columns="2" cellspacing="2" cellpadding="5" style="margin-left:auto; margin-right:auto;">
+
+		
+		<h:outputLabel value="Id :" />
+		<h:outputText value="#{ticketBean.ticket.idTicket}" />
+		
+		<h:outputLabel value="Usuario :" />
+		<h:outputText value="#{ticketBean.ticket.usuario.nome}" />
+		
+		<h:outputLabel value="Tipo :" />
+		<h:outputText value="#{ticketBean.ticket.tipo.tipo}">
+		</h:outputText>
+		
+		<h:outputLabel value="Categoria :" />
+		<h:outputText value="#{ticketBean.ticket.categoria.categoria}">
+		</h:outputText>
+
+		<h:outputLabel value="Assunto :" />
+		<h:panelGroup>
+			<h:outputText value="#{ticketBean.ticket.assunto}" />
+			
+		</h:panelGroup>
+
+		
+		<h:outputLabel value="Descrição   :" />
+		<h:outputText
+			value="#{ticketBean.ticket.descricao}" />
+			
+		<h:outputLabel value="Nível do Analista    :" />
+		<h:outputText
+			value="#{ticketBean.ticket.nivelAnalista}" />
+			
+		<h:outputLabel value="Analista    :" />
+		<h:outputText
+			value="#{ticketBean.ticket.analista.nome}" />
+		
+		<h:outputLabel value="Aberto em  :" />
+		<h:outputText
+			value="#{ticketBean.ticket.dataInicio}" />
+			
+		<h:outputLabel value="Fechado em  :" />
+		<h:outputText
+			value="#{ticketBean.ticket.dataFim}" />
+			
+		<h:outputLabel value="Solução :"  />
+		<h:outputText
+			value="#{ticketBean.ticket.solucao}" />
+				
+		
+		<h:outputLabel value="Status :" />
+		<h:outputText
+			value="#{ticketBean.ticket.statusTicket}" />
+			
+		
+
+	</h:panelGrid>
+
+	<hr />
+
+	<h:form>
+		<h:panelGrid style="margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{ticketBean.novo()}" >
+			<h:graphicImage value="home" library="images" name="home.JPG" />
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

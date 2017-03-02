@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Bem vindo!</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+	<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<h:outputLabel value=" " styleClass="titleStrong" />
+	 <h:graphicImage title="background" library="images"
+					name="helpdesk.png" styleClass="img" />
+
+
+
+	<hr />
+
+	<h:form>
+
+		<h:panelGrid columns="8" cellspacing="5" cellpadding="5" style="width:500px; margin-left:auto; margin-right:auto;">
+
+			<h:commandLink action="#{ticketBean.cadastrarTicket()}" value="">
+				<h:graphicImage title="Cadastrar" library="images"
+					name="novoT.JPG" />
+			</h:commandLink>
+
+			<h:commandLink action="#{ticketBean.consultar()}" value="">
+				<h:graphicImage title="Consultar" library="images"
+					name="consultar.JPG"/>
+				
+			</h:commandLink>
+
+			<h:commandLink action="#{ticketBean.pesquisarTicket()}" value="">
+				<h:graphicImage title="Pesquisar" library="images"
+					name="consultarA.JPG"/>
+			</h:commandLink>
+			
+			<h:commandLink action="#{usuarioBean.cadastro()}" value="">
+			<h:graphicImage value="Cadastrar Usuário" library="images" name="cadastrarU.JPG" />
+			</h:commandLink>
+			
+			<h:commandLink action="#{usuarioBean.consultar()}" value="">
+				<h:graphicImage value="Consultar Usuário" library="images" name="consultarU.JPG" />
+				<f:setPropertyActionListener value="Consultar Usuarios"
+					target="#{usuarioBean.caption}" />
+			</h:commandLink>
+			
+			<h:commandLink action="#{usuarioBean.pesquisarUsuario()}" value="" >
+			<h:graphicImage value="Pesquisar Usuário" library="images" name="pesquisarU.JPG" />
+			</h:commandLink>
+			<h:commandLink action="/paginas/ticket/consulta/relatorios">
+			<h:graphicImage value="relatorios" library="images" name="relatorios.JPG" />
+			</h:commandLink>
+			<h:commandLink action="/paginas/login">
+			<h:graphicImage value="sair" library="images" name="sair.JPG" />
+			</h:commandLink>
+		
+		</h:panelGrid>
+		
+		
+
+	</h:form>
+
+	<hr />
+
+</h:body>
+</html>

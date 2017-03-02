@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Novo Usuario</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+<h:body>
+<h:outputLabel value="HELPDESK SYSTEM" styleClass="titleStrong" />
+	<hr />
+	<h:form id="inputForm">
+		<h:messages styleClass="msgWarn2" />
+		
+		<h:inputHidden value="#{usuarioBean.usuario.nome}" />
+		<h:inputHidden value="#{usuarioBean.usuario.isAnalista}" />
+		<h:inputHidden value="#{usuarioBean.usuario.email}" />
+		<h:inputHidden value="#{usuarioBean.usuario.sexo}" />
+
+
+		<h:panelGrid columns="3" cellspacing="2" cellpadding="2" style="margin-left:auto; margin-right:auto;">
+			
+				
+			<h:outputText value="" styleClass="msgInfo" />
+
+			
+			<h:outputLabel value="Nome:" for="inputNome" />
+			<h:inputText id="inputNome" value="#{usuarioBean.usuario.nome}" label="Campo Nome" maxlength="50" size="60" autocomplete="off" />
+		
+			<br/>
+			
+			<h:outputLabel value="Departamento:" for="inputIdDepartamento" />
+			<h:panelGroup>
+				<h:selectOneMenu id="inputIdDepartamento"
+					value="#{usuarioBean.usuario.departamento.idDepartamento}">
+					<f:selectItem itemValue="0" itemLabel="Selecione um Departamento..." />
+					<f:selectItems value="#{usuarioBean.selectItemDepartamentos}" var="departamento"
+						itemLabel="#{departamento.label}" itemValue="#{departamento.value}" />
+				</h:selectOneMenu>
+			</h:panelGroup>
+		
+			<br/>
+			<h:outputLabel value="Email:" for="inputEmail" />
+			<h:inputText id="inputEmail" value="#{usuarioBean.usuario.email}"
+				label="Campo Sexo" maxlength="50" size="60" autocomplete="off" />
+			<br/>
+			<h:outputLabel value="Sexo:" for="inputSexo" />
+			<h:panelGroup  > 
+					<h:selectOneRadio id="inputSexo" value="#{usuarioBean.usuario.sexo}">
+					<f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />
+					<f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			<br/>
+			<h:outputLabel value="Nível do Analista:" for="inputNivelAnalista" />
+			<h:panelGroup  > 
+					<h:selectOneRadio id="inputNivelAnalista" value="#{usuarioBean.usuario.nivelAnalista}">
+					<f:selectItem itemLabel="1" itemValue="1" />
+					<f:selectItem itemLabel="2" itemValue="2" />
+				</h:selectOneRadio>
+			</h:panelGroup>
+			<br/>
+			<h:outputLabel value="Permissão:" for="inputPermissao" />
+			<h:outputLabel value="#{usuarioBean.usuario.permissao}" for="inputPermissaoValue">
+			<h:commandButton value="Alterar Permissão" action="/paginas/usuario/cadastro/cadastrarUsuario" />
+			</h:outputLabel>
+			
+			
+			<br/>
+			<h:outputLabel value="Login:" for="inputLogin" />
+			<h:inputText id="inputLogin"
+				value="#{usuarioBean.usuario.login}" 
+				label="campo Login" maxlength="10" 	size="15" autocomplete="off">
+			</h:inputText>
+			<br/>
+			<h:outputLabel value="Senha:" for="inputSenha" />
+			<h:inputSecret id="inputSenha" label="Campo Senha"
+				value="#{usuarioBean.usuario.senha}" redisplay="true"
+				required="true" size="10" maxlength="15" autocomplete="off"/>
+			<br/>
+			<h:commandButton value="Confirmar" action="#{usuarioBean.confirmarCadastro()}" />
+			
+		</h:panelGrid>
+		<h:outputText value="* Obrigatório" styleClass="msgInfo" />
+	</h:form>
+	<hr />
+	<h:form>
+		<h:panelGrid columns="2" cellspacing="2" cellpadding="2" style="width:100px; margin-left:auto; margin-right:auto;">
+			<h:commandLink action="#{usuarioBean.novo()}">
+			<h:graphicImage title="back to homepage" library="images"
+				name="home.JPG" />
+			</h:commandLink>
+			
+			<h:commandLink action="/paginas/usuario/consulta/consultarUsuario"
+			rendered="#{!empty usuarioBean.usuario.idUsuario}" >
+			<h:graphicImage title="Pesquisar" library="images"
+				name="consultarU.JPG" />
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
